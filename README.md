@@ -4,11 +4,19 @@ learn and experiment with [aws glue](https://aws.amazon.com/glue/)
 
 ## Running ["Python Shell"](https://docs.aws.amazon.com/glue/latest/dg/add-job-python.html) Job
 
+### Local Running/Testing of Script
+
 ```sh
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python scripts/python3-shell-job-example.py
+```
+
+### Running/Submitting Python Shell Job
+
+```sh
+node src/job-runner.js
 ```
 
 ## Steps to Run [`scripts/example-notebook-script-01.py`](scripts/example-notebook-script-01.py) in SageMaker notebook
