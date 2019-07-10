@@ -1,0 +1,23 @@
+{
+  "name": "aws-glue-playground",
+  "version": "1.0.0",
+  "description": "learn and experiment with [aws glue](https://aws.amazon.com/glue/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pfeilbr/aws-glue-playground.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pfeilbr/aws-glue-playground/issues"
+  },
+  "homepage": "https://github.com/pfeilbr/aws-glue-playground#readme",
+  "dependencies": {
+    "aws-sdk": "^2.490.0"
+  }
+}
