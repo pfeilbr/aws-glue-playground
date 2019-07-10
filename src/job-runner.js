@@ -4,6 +4,7 @@ const glue = new AWS.Glue();
 const util = require("util");
 const fs = require("fs");
 const path = require("path");
+const program = require("commander");
 
 require("dotenv").config();
 
@@ -73,18 +74,19 @@ const runGlueJob = async (jobBaseName, localScriptPath) => {
   }
 };
 
-const runPythonShellGlueJobExample = async () => {
-  const scriptPath = path.join(
-    __dirname,
-    "..",
-    "scripts",
-    "python3-shell-job-example.py"
-  );
-
+const runPythonShellGlueJobExample = async scriptPath => {
   const jobBasename = path.basename(scriptPath, path.extname(scriptPath));
   await runGlueJob(jobBasename, scriptPath);
 };
 
-(async () => {
-  await runPythonShellGlueJobExample();
-})();
+program
+  .version("0.0.1")
+  .command("run-python-shell-script <file>")
+  .action(async (file, cmd) => {
+    const scriptPath = path.resolve(file);
+    await runPythonShellGlueJobExample(scriptPath);
+    console.log(scriptPath);
+  });
+program.parse(process.argv);
+
+(async () => {})();

@@ -19,7 +19,8 @@ python scripts/python3-shell-job-example.py
 cp .env.sample .env
 # modify .env for your environment
 
-node src/job-runner.js
+# following submits the job (scripts/python3-shell-job-example.py)
+node src/job-runner.js run-python-shell-script scripts/python3-shell-job-example.py
 ```
 
 ## Steps to Run [`scripts/example-notebook-script-01.py`](scripts/example-notebook-script-01.py) in SageMaker notebook

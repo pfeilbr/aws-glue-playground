@@ -19,6 +19,7 @@
   "homepage": "https://github.com/pfeilbr/aws-glue-playground#readme",
   "dependencies": {
     "aws-sdk": "^2.490.0",
+    "commander": "^2.20.0",
     "dotenv": "^8.0.0"
   }
 }
