@@ -45,7 +45,11 @@ const runGlueJob = async (jobBaseName, localScriptPath) => {
 
   const startJobRunParams = {
     JobName: jobName,
-    MaxCapacity: 0.0625
+    MaxCapacity: 0.0625,
+    Arguments: {
+      "--example_argument_0": "argument 0 here",
+      "--example_argument_1": "argument 1 here"
+    }
   };
   const startJobRunResp = await glue.startJobRun(startJobRunParams).promise();
   log(startJobRunResp);

@@ -16,6 +16,9 @@ python scripts/python3-shell-job-example.py
 ### Running/Submitting Python Shell Job
 
 ```sh
+cp .env.sample .env
+# modify .env for your environment
+
 node src/job-runner.js
 ```
 
