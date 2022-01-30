@@ -4,6 +4,9 @@
 
 
 ```sh
+# deploy
+sam deploy
+
 # inspect the glue execution environment
 
 # edit `my-glue-script-01.py` and upload to arn:aws:s3:::com.brianpfeil.my-glue-bucket/my-glue-script-01.py
