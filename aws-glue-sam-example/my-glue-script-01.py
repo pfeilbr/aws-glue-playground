@@ -15,5 +15,7 @@ for directory_path in os.environ['PATH'].split(":"):
     print(result.stdout.decode("utf-8"))
 
 
-result = subprocess.run(['curl', 'https://www.google.com'], stdout=subprocess.PIPE)
-print(result.stdout.decode("utf-8"))
+result = subprocess.run(['curl', '-s', 'https://www.google.com', '-o', 'response.log'], stdout=subprocess.PIPE)
+result = subprocess.run(['cat', 'response.log'], stdout=subprocess.PIPE)
+print(result.stdout)
+
