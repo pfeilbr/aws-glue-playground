@@ -1,0 +1,56 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  aws-glue-sam-example
+
+  Sample SAM Template for aws-glue-sam-example
+  
+Resources:
+
+  MyGlueBucket:
+    Type: AWS::S3::Bucket
+    Properties: 
+      BucketName: "com.brianpfeil.my-glue-bucket"
+
+  MyJobRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "glue.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        -
+          PolicyName: "root"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action: "*"
+                Resource: "*"
+
+  MyJob:
+    Type: AWS::Glue::Job
+    Properties:
+      GlueVersion: 3.0
+      Command:
+        Name: glueetl
+        ScriptLocation: "s3://com.brianpfeil.my-glue-bucket/my-glue-script-01.py"
+      DefaultArguments:
+        "--job-bookmark-option": "job-bookmark-enable"
+      ExecutionProperty:
+        MaxConcurrentRuns: 2
+      MaxRetries: 0
+      Name: cf-job1
+      Role: !Ref MyJobRole
+
+#Outputs:
+ 
