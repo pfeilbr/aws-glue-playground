@@ -42,12 +42,9 @@ Resources:
     Properties:
       GlueVersion: 3.0
       Command:
-        Name: glueetl
+        Name:  glueetl # OR pythonshell
+        PythonVersion: 3
         ScriptLocation: "s3://com.brianpfeil.my-glue-bucket/my-glue-script-01.py"
-      DefaultArguments:
-        "--job-bookmark-option": "job-bookmark-enable"
-      ExecutionProperty:
-        MaxConcurrentRuns: 2
       MaxRetries: 0
       Name: cf-job1
       Role: !Ref MyJobRole
