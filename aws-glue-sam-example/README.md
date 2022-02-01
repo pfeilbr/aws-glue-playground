@@ -9,21 +9,29 @@ sam deploy
 
 # inspect the glue execution environment
 
+JOB_NAME="python3-shell-glue-2.0-job" # OR "cf-job1"
+
 # edit `my-glue-script-01.py` and upload to arn:aws:s3:::com.brianpfeil.my-glue-bucket/my-glue-script-01.py
 aws glue start-job-run \
-  --job-name "cf-job1"
+  --job-name "${JOB_NAME}"
 
 aws s3 cp my-glue-script-01.py s3://com.brianpfeil.my-glue-bucket/my-glue-script-01.py \
 &&  aws s3 cp main.sh s3://com.brianpfeil.my-glue-bucket/main.sh \
-&& aws glue start-job-run --job-name "cf-job1"
+&& aws glue start-job-run --job-name "${JOB_NAME}"
+
+
+
 
 jq -r '.JobRunId'
 
-aws glue get-job-run --job-name "cf-job1" --run-id "jr_5694b5b7e3912414013003a6a6b4bff81b095a48b749bdc9b480afad922e09f7"
+aws glue get-job-run --job-name "${JOB_NAME}" --run-id "jr_f25da25b113a38cc10ad86be2bcd05a3478c1a5cc5475e3b6a203c01cf1b292b"
 JOB_RUN_ID
 LOG_STREAM="/aws-glue/jobs/output/${JOB_RUN_ID}"
 
 aws logs tail "/aws-glue/jobs/output" --follow
+
+aws logs tail "/aws-glue/python-jobs/output" --follow
+
 
 ```
 

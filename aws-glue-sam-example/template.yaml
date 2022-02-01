@@ -1,15 +1,14 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
   aws-glue-sam-example
 
   Sample SAM Template for aws-glue-sam-example
-  
-Resources:
 
+Resources:
   MyGlueBucket:
     Type: AWS::S3::Bucket
-    Properties: 
+    Properties:
       BucketName: "com.brianpfeil.my-glue-bucket"
 
   MyJobRole:
@@ -18,8 +17,7 @@ Resources:
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
-          -
-            Effect: "Allow"
+          - Effect: "Allow"
             Principal:
               Service:
                 - "glue.amazonaws.com"
@@ -27,27 +25,43 @@ Resources:
               - "sts:AssumeRole"
       Path: "/"
       Policies:
-        -
-          PolicyName: "root"
+        - PolicyName: "root"
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
-              -
-                Effect: "Allow"
+              - Effect: "Allow"
                 Action: "*"
                 Resource: "*"
 
-  MyJob:
+  GlueETLPython3Glue3:
     Type: AWS::Glue::Job
     Properties:
       GlueVersion: 3.0
       Command:
-        Name:  glueetl # OR pythonshell
+        Name: glueetl # OR pythonshell
         PythonVersion: 3
         ScriptLocation: "s3://com.brianpfeil.my-glue-bucket/my-glue-script-01.py"
+      Timeout: 15 # minutes
       MaxRetries: 0
-      Name: cf-job1
+      Name: "glueetl-python3-glue-3"
       Role: !Ref MyJobRole
 
+  Python3ShellGlue2:
+    Type: AWS::Glue::Job
+    Properties:
+      Command:
+        Name: pythonshell
+        PythonVersion: "3"
+        ScriptLocation: !Sub "s3://com.brianpfeil.my-glue-bucket/my-glue-script-01.py"
+      ExecutionProperty:
+        MaxConcurrentRuns: 1
+      # DefaultArguments:
+      #     "--extra-py-files": !Sub "s3://${ArtifactsBucket}/glue/libs/awswrangler-2.12.0-py3-none-any.whl"
+      #     "--config_path": !Sub "${ETLParametersPath}"
+      GlueVersion: "1.0"
+      Timeout: 15 # minutes
+      MaxCapacity: 1
+      MaxRetries: 0
+      Name: "python3-shell-glue-2.0-job"
+      Role: !GetAtt MyJobRole.Arn
 #Outputs:
- 
