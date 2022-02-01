@@ -3,6 +3,16 @@ import subprocess
  
 # inspect the glue execution environment
 
+result = subprocess.run(['uname', '-a'], stdout=subprocess.PIPE)
+print(result.stdout.decode("utf-8"))
+
+result = subprocess.run(['bash', '--version'], stdout=subprocess.PIPE)
+print(result.stdout.decode("utf-8"))
+
+result = subprocess.run(['aws', '--version'], stdout=subprocess.PIPE)
+print(result.stdout.decode("utf-8"))
+
+
 # printing environment variables
 print(os.environ)
 
