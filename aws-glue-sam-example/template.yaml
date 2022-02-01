@@ -40,7 +40,7 @@ Resources:
       Command:
         Name: glueetl # OR pythonshell
         PythonVersion: 3
-        ScriptLocation: "s3://com.brianpfeil.my-glue-bucket/my-glue-script-01.py"
+        ScriptLocation: "s3://com.brianpfeil.my-glue-bucket/main.py"
       Timeout: 15 # minutes
       MaxRetries: 0
       Name: "glueetl-python3-glue-3"
@@ -52,7 +52,7 @@ Resources:
       Command:
         Name: pythonshell
         PythonVersion: "3"
-        ScriptLocation: !Sub "s3://com.brianpfeil.my-glue-bucket/my-glue-script-01.py"
+        ScriptLocation: !Sub "s3://com.brianpfeil.my-glue-bucket/main.py"
       ExecutionProperty:
         MaxConcurrentRuns: 2
       # DefaultArguments:

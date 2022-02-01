@@ -9,7 +9,7 @@ build:
 
 deploy: build
 	aws s3 cp build/package.zip s3://com.brianpfeil.my-glue-bucket/package.zip
-	aws s3 cp my-glue-script-01.py s3://com.brianpfeil.my-glue-bucket/my-glue-script-01.py
+	aws s3 cp main.py s3://com.brianpfeil.my-glue-bucket/main.py
 
 run_job: deploy
 	aws glue start-job-run --job-name $(JOB_NAME)

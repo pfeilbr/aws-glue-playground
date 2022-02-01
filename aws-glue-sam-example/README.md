@@ -7,6 +7,13 @@
 # deploy
 sam deploy
 
+# creates build/package.zip
+make build
+
+# copies package.zip and main.py to s3
+make deploy
+make run_job
+
 # inspect the glue execution environment
 
 JOB_NAME="python3-shell-glue-2.0-job" # OR "cf-job1"
