@@ -25,6 +25,13 @@ head response.log
 pip install -r requirements.txt --target=./
 python pip-test.py > output.txt 2>&1
 cat output.txt
+pip list
+
+python -m venv env
+source env/bin/activate
+pip install -r requirements.txt
+#find env/
+python pip-test.py
 
 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 echo "--- done: ${timestamp} ---"
