@@ -10,11 +10,11 @@ def run(cmd, verbose=True):
     if verbose:
         print(result.stdout.decode("utf-8"))
 
-print("hello")
-
 s3_client = boto3.client('s3')
 s3_client.download_file('com.brianpfeil.my-glue-bucket', 'package.zip', 'package.zip')
-result = subprocess.run(['unzip', 'package.zip'], check=True)
+result = subprocess.run(['unzip', 'package.zip'])
+result = subprocess.run(['ls'])
+result = subprocess.run(['pwd'])
 #s3_client.download_file('com.brianpfeil.my-glue-bucket', 'main.sh', 'main.sh')
 #print(open('main.sh').read())
 

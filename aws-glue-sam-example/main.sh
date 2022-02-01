@@ -16,10 +16,15 @@ unzip terraform_1.1.4_linux_amd64.zip
 ./terraform -version
 
 curl -s https://www.google.com -o response.log
-cat response.log
+head response.log
 
 # # zip -r fs.zip /
 # # aws s3 cp fs.zip s3://com.brianpfeil.my-glue-bucket/fs.zip
+
+
+pip install -r requirements.txt --target=./
+python pip-test.py > output.txt 2>&1
+cat output.txt
 
 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 echo "--- done: ${timestamp} ---"

@@ -1,3 +1,4 @@
 node_modules
 .env
 venv
+aws-glue-sam-example/build/package.zip
