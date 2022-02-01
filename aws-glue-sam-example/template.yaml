@@ -54,7 +54,7 @@ Resources:
         PythonVersion: "3"
         ScriptLocation: !Sub "s3://com.brianpfeil.my-glue-bucket/my-glue-script-01.py"
       ExecutionProperty:
-        MaxConcurrentRuns: 1
+        MaxConcurrentRuns: 2
       # DefaultArguments:
       #     "--extra-py-files": !Sub "s3://${ArtifactsBucket}/glue/libs/awswrangler-2.12.0-py3-none-any.whl"
       #     "--config_path": !Sub "${ETLParametersPath}"
