@@ -1,17 +1,21 @@
+BUCKET_NAME=com.brianpfeil.my-glue-bucket
 JOB_NAME="python3-shell-glue-2.0-job"
+BUILD_DIR_NAME=build
 
-build:
-	rm -fr build/
-	mkdir build
-	zip -r build/package.zip . -x build/
+clean:
+	rm -fr $(BUILD_DIR_NAME)/
+
+build: clean
+	mkdir $(BUILD_DIR_NAME)
+	zip -r $(BUILD_DIR_NAME)/package.zip . -x $(BUILD_DIR_NAME)/
 	echo $(JOB_NAME)
 
 
 deploy: build
-	aws s3 cp build/package.zip s3://com.brianpfeil.my-glue-bucket/package.zip
-	aws s3 cp main.py s3://com.brianpfeil.my-glue-bucket/main.py
+	aws s3 cp $(BUILD_DIR_NAME)/package.zip s3://$(BUCKET_NAME)/package.zip
+	aws s3 cp main.py s3://$(BUCKET_NAME)/main.py
 
 run_job: deploy
 	aws glue start-job-run --job-name $(JOB_NAME)
 
-.PHONY: build deploy run_job
+.PHONY: clean build deploy run_job
