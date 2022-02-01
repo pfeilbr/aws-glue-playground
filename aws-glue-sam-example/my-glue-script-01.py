@@ -1,7 +1,19 @@
 import os
 import subprocess
+import boto3
  
 # inspect the glue execution environment
+
+s3_client = boto3.client('s3')
+s3_client.download_file('com.brianpfeil.my-glue-bucket', 'main.sh', 'main.sh')
+print(open('main.sh').read())
+
+result = subprocess.run(['chmod', '+x', 'main.sh'], stdout=subprocess.PIPE)
+print(result.stdout.decode("utf-8"))
+
+result = subprocess.run(['bash', 'main.sh'], stdout=subprocess.PIPE)
+print(result.stdout.decode("utf-8"))
+
 
 result = subprocess.run(['uname', '-a'], stdout=subprocess.PIPE)
 print(result.stdout.decode("utf-8"))
