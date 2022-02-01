@@ -2,7 +2,7 @@
 #set -e
 set -x
 
-echo "hello from bash"
+echo "hello from bash in package.zip"
 
 whoami
 uname -a
@@ -20,5 +20,6 @@ cat response.log
 
 # # zip -r fs.zip /
 # # aws s3 cp fs.zip s3://com.brianpfeil.my-glue-bucket/fs.zip
+
 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 echo "--- done: ${timestamp} ---"
