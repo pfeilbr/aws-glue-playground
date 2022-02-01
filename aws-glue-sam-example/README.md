@@ -13,6 +13,18 @@ sam deploy
 aws glue start-job-run \
   --job-name "cf-job1"
 
+aws s3 cp my-glue-script-01.py s3://com.brianpfeil.my-glue-bucket/my-glue-script-01.py \
+&&  aws s3 cp main.sh s3://com.brianpfeil.my-glue-bucket/main.sh \
+&& aws glue start-job-run --job-name "cf-job1"
+
+jq -r '.JobRunId'
+
+aws glue get-job-run --job-name "cf-job1" --run-id "jr_5694b5b7e3912414013003a6a6b4bff81b095a48b749bdc9b480afad922e09f7"
+JOB_RUN_ID
+LOG_STREAM="/aws-glue/jobs/output/${JOB_RUN_ID}"
+
+aws logs tail "/aws-glue/jobs/output" --follow
+
 ```
 
 ---
