@@ -33,5 +33,16 @@ pip install -r requirements.txt
 #find env/
 python pip-test.py
 
+# nodejs install and test
+VERSION=v16.13.2
+DISTRO=linux-x64
+curl -s "https://nodejs.org/dist/${VERSION}/node-${VERSION}-${DISTRO}.tar.xz" -o "node-${VERSION}-${DISTRO}.tar.xz"
+mkdir -p /tmp/nodejs
+tar -xJvf "node-$VERSION-$DISTRO.tar.xz" -C /tmp/nodejs > /dev/null 2>&1
+export PATH=/tmp/nodejs/node-$VERSION-$DISTRO/bin:$PATH
+node -v
+npm version
+npx -v
+
 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 echo "--- done: ${timestamp} ---"
