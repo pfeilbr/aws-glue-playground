@@ -3,3 +3,4 @@ node_modules
 venv
 aws-glue-sam-example/build/package.zip
 aws-glue-sam-example/build/package.zip
+aws-glue-sam-example/build/package.zip

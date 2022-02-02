@@ -7,7 +7,7 @@ clean:
 
 build: clean
 	mkdir $(BUILD_DIR_NAME)
-	zip -r $(BUILD_DIR_NAME)/package.zip . -x $(BUILD_DIR_NAME)/
+	zip -r $(BUILD_DIR_NAME)/package.zip . -x $(BUILD_DIR_NAME)/ -x node_modules/
 	echo $(JOB_NAME)
 
 

@@ -43,6 +43,9 @@ export PATH=/tmp/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 node -v
 npm version
 npx -v
+npm install
+node index.js > output.txt 2>&1
+cat output.txt
 
 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 echo "--- done: ${timestamp} ---"
